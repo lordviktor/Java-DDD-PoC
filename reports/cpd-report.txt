@@ -1,0 +1,31 @@
+Found a 8 line (28 tokens) duplication in the following files: 
+Starting at line 27 of C:\Users\Viktor\workspace pessoal\JavaDddExample\src\main\java\br\com\victor\JavaDddExample\repository\impl\base\CrudRepostiory.java
+Starting at line 28 of C:\Users\Viktor\workspace pessoal\JavaDddExample\MavenTest\Projeto\src\main\java\br\com\victor\JavaDddExample\repository\impl\base\CrudRepostiory.java
+
+	public void delete(T data) {
+		this.data.remove(data);
+	}
+
+	public List<T> list() {
+		return this.data;
+	}
+}
+=====================================================================
+Found a 13 line (26 tokens) duplication in the following files: 
+Starting at line 6 of C:\Users\Viktor\workspace pessoal\JavaDddExample\src\main\java\br\com\victor\JavaDddExample\domain\entityState\ModifyEntityStateOperation.java
+Starting at line 6 of C:\Users\Viktor\workspace pessoal\JavaDddExample\src\main\java\br\com\victor\JavaDddExample\domain\entityState\InsertEntityOperation.java
+Starting at line 6 of C:\Users\Viktor\workspace pessoal\JavaDddExample\src\main\java\br\com\victor\JavaDddExample\domain\entityState\DeleteEntityStateOperation.java
+
+public class DeleteEntityStateOperation implements EntityStateOperation {
+
+	public EntityState deleted(Entity entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public EntityState modified(Entity entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

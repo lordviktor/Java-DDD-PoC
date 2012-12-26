@@ -3,29 +3,28 @@ package br.com.victor.JavaDddExample.repository.impl.base;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.victor.JavaDddExample.domain.base.Entity;
+import br.com.victor.JavaDddExample.domain.base.AbstractEntity;
 import br.com.victor.JavaDddExample.repository.interfaces.base.CrudRepository;
 
-public abstract class CrudRepostiory<T extends Entity> 
+public abstract class AbstractCrudRepostiory<T extends AbstractEntity> 
 	implements CrudRepository<T> 
 {
+	private final List<T> data;
 	
-	private ArrayList<T> data;
-	
-	public CrudRepostiory()
+	public AbstractCrudRepostiory()
 	{
 		data = new ArrayList<T>();
 	}
 	
-	public void save(T data) {
+	public void save(final T data) {
 		this.data.add(data);
 	}
 
-	public void update(T data) {
+	public void update(final T data) {
 		this.data.add(data);
 	}
 
-	public void delete(T data) {
+	public void delete(final T data) {
 		this.data.remove(data);
 	}
 

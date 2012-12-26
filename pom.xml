@@ -99,13 +99,11 @@
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		<!-- Dependencia para integrar o spring com o AspectJ -->
-		<!--<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-agent</artifactId>
-			<version>${spring.version}</version>
+		<dependency>
+		   <groupId>org.springframework</groupId>
+		   <artifactId>spring-tx</artifactId>
+		   <version>${spring.version}</version>
 		</dependency>
-	-->
 
 		<dependency>
 			<groupId>org.springframework</groupId>

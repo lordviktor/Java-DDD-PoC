@@ -14,20 +14,21 @@ import junit.framework.TestCase;
 @ContextConfiguration(locations="classpath:application-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class Teste extends TestCase {
-
-	@Autowired
-	private App beanTest;
+	
+	private IUserRepository userRepository;
 	
 	@Autowired
-	private IUserRepository userRepo;
+	public void setUserRepository(final IUserRepository userRepository)
+	{
+		this.userRepository = userRepository;
+	}
 	
 	@Test
-	public void TestBeanInjection()
+	public void testBeanInjection()
 	{
-		assertNotNull(beanTest);
-		assertNotNull(userRepo);
-
-		User var = new User();
-		var.Save();
+		assertNotNull("User repository cannot be null.", userRepository);
+		final User user = new User();
+		user.setName ("Viktor");
+		user.save();
 	}
 }
