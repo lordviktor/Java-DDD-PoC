@@ -1,30 +1,22 @@
 package br.com.victor.JavaDddExample.domain.base;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class AbstractEntity {
-	
-	private Long id;
-	
-	private EntityState state = EntityState.INSERTED;
-	
-	public Long getId() {
-		return this.id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	public EntityState getState() {
-		return state;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	public void modify()
-	{
-		this.state = state.modified(this);
-	}
-	
-	public void delete()
-	{
-		this.state = state.deleted(this);
-	}
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
