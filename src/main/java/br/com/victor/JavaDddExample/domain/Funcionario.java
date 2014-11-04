@@ -4,11 +4,11 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import br.com.victor.JavaDddExample.domain.base.AbstractEntity;
+import br.com.victor.JavaDddExample.domain.base.AbstractTenancyEntity;
 
 @Entity
-@Table(name = "FARMACIA")
-public class Funcionario extends AbstractEntity {
+@Table(name = "FUNCIONARIO")
+public class Funcionario extends AbstractTenancyEntity {
 
     @Basic
     private String usuario;
@@ -98,6 +98,6 @@ public class Funcionario extends AbstractEntity {
     }
 
     public void setRegistroFarmaceutico(String registroFarmaceutico) {
-        this.registroFarmaceutico = registroFarmaceutico;
-    }
+		this.registroFarmaceutico = registroFarmaceutico;
+	}
 }
