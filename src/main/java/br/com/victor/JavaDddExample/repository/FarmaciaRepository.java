@@ -1,4 +1,4 @@
-package br.com.victor.JavaDddExample.repository.interfaces.jpa;
+package br.com.victor.JavaDddExample.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

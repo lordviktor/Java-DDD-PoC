@@ -30,6 +30,11 @@ public class Pedido extends AbstractTenancyEntity {
 	@OneToMany(mappedBy = "pedido")
 	private Set<ItemPedido> itens;
 
+	public Pedido(Funcionario funcionario) {
+		setData(new Date());
+		
+	}
+
 	public Date getData() {
 		return data;
 	}
