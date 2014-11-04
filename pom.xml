@@ -23,7 +23,7 @@
 		<tomcat.version>7.0.54</tomcat.version>
 		<slf4j.version>1.7.7</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
-		<hibernate.version>4.3.6.Final</hibernate.version>
+		<hibernate.version>4.3.7.Final</hibernate.version>
 	</properties>
 
 	<build>
@@ -32,6 +32,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.17</version>
 				<configuration>
 					<forkMode>always</forkMode>
 					<argLine>
@@ -51,7 +52,11 @@
 					<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader> <!-- http://stackoverflow.com/questions/17962524/extending-classpath-and-tomcat-plugin -->
 					<systemProperties>
 						<log4j.configuration>file:./src/test/resources/log4j.xml</log4j.configuration>
+						<JDBC_URL>jdbc:mysql://localhost:3306/java_ddd_poc</JDBC_URL>
+						<JDBC_USERNAME>root</JDBC_USERNAME>
+						<JDBC_PASSWORD>viktorjose</JDBC_PASSWORD>
 					</systemProperties>
+					<classLoaderClass>org.springframework.instrument.classloading.tomcat.TomcatInstrumentableClassLoader</classLoaderClass>
 				</configuration>
 				<dependencies>
 					<dependency>
@@ -170,11 +175,6 @@
 						<version>${slf4j.version}</version>
 					</dependency>
 					<dependency>
-						<groupId>mysql</groupId>
-						<artifactId>mysql-connector-java</artifactId>
-						<version>5.1.25</version>
-					</dependency>
-					<dependency>
 						<groupId>org.springframework</groupId>
 						<artifactId>spring-instrument-tomcat</artifactId>
 						<version>${spring.version}</version>
@@ -219,6 +219,18 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.25</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jolbox</groupId>
+			<artifactId>bonecp</artifactId>
+			<version>0.7.1.RELEASE</version>
+		</dependency>
+
+
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -252,11 +264,6 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
