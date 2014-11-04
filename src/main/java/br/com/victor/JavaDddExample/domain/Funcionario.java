@@ -1,5 +1,6 @@
 package br.com.victor.JavaDddExample.domain;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -9,14 +10,23 @@ import br.com.victor.JavaDddExample.domain.base.AbstractEntity;
 @Table(name = "FARMACIA")
 public class Funcionario extends AbstractEntity {
 
+    @Basic
     private String usuario;
+    @Basic
     private String senha;
+    @Basic
     private String nome;
+    @Basic
     private String cpf;
+    @Basic
     private String cargo;
+    @Basic
     private String telefone;
+    @Basic
     private String endereco;
+    @Basic
     private String salario;
+    @Basic
     private String registroFarmaceutico;
 
     public String getUsuario() {

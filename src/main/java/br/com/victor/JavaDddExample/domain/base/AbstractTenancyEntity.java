@@ -1,5 +1,6 @@
 package br.com.victor.JavaDddExample.domain.base;
 
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
@@ -9,6 +10,7 @@ import br.com.victor.JavaDddExample.domain.Farmacia;
 public class AbstractTenancyEntity extends AbstractEntity {
 
     @ManyToOne
+    @JoinColumn
     private Farmacia farmacia;
 
     public Farmacia getFarmacia() {
