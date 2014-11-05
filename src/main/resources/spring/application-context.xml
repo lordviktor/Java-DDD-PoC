@@ -19,6 +19,6 @@
 	<!-- Revela ao spring os pacote que contem beans a serem carregados -->
 	<context:component-scan base-package="br.com.victor" />
 
-    <context:property-placeholder location="/application.properties"
+    <context:property-placeholder location="classpath:application.properties"
                                   ignore-resource-not-found="true"/>
 </beans>
