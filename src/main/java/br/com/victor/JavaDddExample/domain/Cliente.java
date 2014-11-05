@@ -4,10 +4,13 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Configurable;
+
 import br.com.victor.JavaDddExample.domain.base.AbstractTenancyEntity;
 
 @Entity
 @Table(name = "CLIENTE")
+@Configurable
 public class Cliente extends AbstractTenancyEntity {
 
 	@Basic

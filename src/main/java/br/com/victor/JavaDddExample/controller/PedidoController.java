@@ -23,13 +23,14 @@ public class PedidoController {
 	FarmaciaRepository farmaciaRepository;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public void criarNovoPedido(@PathVariable("farmaciaId") Long farmaciaId,
+	public void create(@PathVariable("farmaciaId") Long farmaciaId,
 			@RequestBody Order novoPedido) {
 
 		Farmacia farmacia = farmaciaRepository.findOne(farmaciaId);
-		Pedido pedido = new Pedido();
+		// /Pedido pedido = new Pedido();
 
-		pedido.setData(new Date());
+		// pedido.setData(new Date());
 
 	}
+
 }

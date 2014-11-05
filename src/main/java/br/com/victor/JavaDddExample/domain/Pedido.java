@@ -11,10 +11,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Configurable;
+
 import br.com.victor.JavaDddExample.domain.base.AbstractTenancyEntity;
 
 @Entity
 @Table(name = "PEDIDO")
+@Configurable
 public class Pedido extends AbstractTenancyEntity {
 
 	@Basic
@@ -32,7 +35,7 @@ public class Pedido extends AbstractTenancyEntity {
 
 	public Pedido(Funcionario funcionario) {
 		setData(new Date());
-		
+
 	}
 
 	public Date getData() {

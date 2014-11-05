@@ -16,9 +16,9 @@
 
 	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="#{systemProperties['JDBC_URL']}" />
-		<property name="username" value="#{systemProperties['JDBC_USERNAME']}" />
-		<property name="password" value="#{systemProperties['JDBC_PASSWORD']}" />
+		<property name="jdbcUrl" value="${JDBC_URL}" />
+		<property name="username" value="${JDBC_USERNAME}" />
+		<property name="password" value="${JDBC_PASSWORD}" />
 	</bean>
 
 	<bean name="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">

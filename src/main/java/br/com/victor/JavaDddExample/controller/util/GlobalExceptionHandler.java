@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
 			InvalidArgumentException invalidArgumentException) {
 	}
 
-	@ExceptionHandler(InvalidArgumentException.class)
+	@ExceptionHandler(UnauthorizedException.class)
 	@ResponseStatus(HttpStatus.UNAUTHORIZED)
 	public void handleUnauthorizedException(
 			UnauthorizedException unauthorizedException) {

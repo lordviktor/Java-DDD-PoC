@@ -8,10 +8,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Configurable;
+
 import br.com.victor.JavaDddExample.domain.base.AbstractEntity;
 
 @Entity
 @Table(name = "ITEM_PEDIDO")
+@Configurable
 public class ItemPedido extends AbstractEntity {
 	@Basic
 	private BigDecimal quantidade;

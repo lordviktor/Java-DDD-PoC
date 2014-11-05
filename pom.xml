@@ -51,7 +51,6 @@
 					<additionalConfigFilesDir>${basedir}/src/main/tomcat/conf</additionalConfigFilesDir>
 					<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader> <!-- http://stackoverflow.com/questions/17962524/extending-classpath-and-tomcat-plugin -->
 					<systemProperties>
-						<log4j.configuration>file:./src/test/resources/log4j.xml</log4j.configuration>
 						<JDBC_URL>jdbc:mysql://localhost:3306/java_ddd_poc</JDBC_URL>
 						<JDBC_USERNAME>root</JDBC_USERNAME>
 						<JDBC_PASSWORD>viktorjose</JDBC_PASSWORD>
@@ -155,26 +154,6 @@
 						<version>${tomcat.version}</version>
 					</dependency>
 					<dependency>
-						<groupId>log4j</groupId>
-						<artifactId>log4j</artifactId>
-						<version>${log4j.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-api</artifactId>
-						<version>${slf4j.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-log4j12</artifactId>
-						<version>${slf4j.version}</version>
-					</dependency>
-					<dependency>
-						<artifactId>jcl-over-slf4j</artifactId>
-						<groupId>org.slf4j</groupId>
-						<version>${slf4j.version}</version>
-					</dependency>
-					<dependency>
 						<groupId>org.springframework</groupId>
 						<artifactId>spring-instrument-tomcat</artifactId>
 						<version>${spring.version}</version>
@@ -230,6 +209,27 @@
 			<version>0.7.1.RELEASE</version>
 		</dependency>
 
+		<!-- Logging features -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<groupId>org.slf4j</groupId>
+			<version>${slf4j.version}</version>
+		</dependency>
 
 		<!-- AspectJ -->
 		<dependency>
@@ -254,12 +254,6 @@
 					<groupId>commons-logging</groupId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>4.0.6.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
