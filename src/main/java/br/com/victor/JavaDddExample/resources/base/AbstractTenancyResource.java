@@ -2,7 +2,7 @@ package br.com.victor.JavaDddExample.resources.base;
 
 import br.com.victor.JavaDddExample.resources.DrugStore;
 
-public class BaseTenancyResource {
+public class AbstractTenancyResource extends AbstractResource {
 
 	private DrugStore drugStore;
 
