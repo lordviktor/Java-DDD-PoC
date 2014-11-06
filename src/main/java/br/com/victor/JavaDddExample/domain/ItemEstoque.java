@@ -56,4 +56,8 @@ public class ItemEstoque extends AbstractEntity {
 		this.quantidade.add(quantity);
 	}
 
+	public void removerQuantidade(BigDecimal quantity) {
+		this.quantidade.subtract(quantity);
+	}
+
 }

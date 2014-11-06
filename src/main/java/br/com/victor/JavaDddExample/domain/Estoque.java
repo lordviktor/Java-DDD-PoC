@@ -62,7 +62,13 @@ public class Estoque extends AbstractTenancyEntity {
 			itemEstoque.setMedicamento(medicamento);
 			itemEstoque.setEstoque(this);
 		}
-		
-		itemEstoque.adicionarQuantidade(quantity);
+
+		if (quantity.signum() == 1) {
+			itemEstoque.adicionarQuantidade(quantity);
+		} else {
+			itemEstoque.removerQuantidade(quantity);
+		}
+
+		itemEstoqueRepository.save(itemEstoque);
 	}
 }

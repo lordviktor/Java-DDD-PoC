@@ -24,6 +24,14 @@ public class ItemPedido extends AbstractEntity {
 
 	@ManyToOne
 	@JoinColumn
+	private Estoque estoque;
+
+	@ManyToOne
+	@JoinColumn
+	private Medicamento medicamento;
+
+	@ManyToOne
+	@JoinColumn
 	private Pedido pedido;
 
 	public BigDecimal getQuantidade() {
@@ -48,6 +56,22 @@ public class ItemPedido extends AbstractEntity {
 
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
+	}
+
+	public Estoque getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Estoque estoque) {
+		this.estoque = estoque;
+	}
+
+	public Medicamento getMedicamento() {
+		return medicamento;
+	}
+
+	public void setMedicamento(Medicamento medicamento) {
+		this.medicamento = medicamento;
 	}
 
 }
