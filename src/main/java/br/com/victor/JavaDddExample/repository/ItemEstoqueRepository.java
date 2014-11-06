@@ -8,4 +8,6 @@ import br.com.victor.JavaDddExample.domain.ItemEstoque;
 @Repository
 public interface ItemEstoqueRepository extends JpaRepository<ItemEstoque, Long> {
 
+	ItemEstoque findByEstoqueIdAndMedicamentoId(Long id, Long id2);
+
 }

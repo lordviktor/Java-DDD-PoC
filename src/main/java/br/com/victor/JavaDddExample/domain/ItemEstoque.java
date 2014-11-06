@@ -27,13 +27,33 @@ public class ItemEstoque extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn
 	private Estoque estoque;
-	
+
 	public BigDecimal getQuantidade() {
 		return quantidade;
 	}
 
 	public void setQuantidade(BigDecimal quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	public Medicamento getMedicamento() {
+		return medicamento;
+	}
+
+	public void setMedicamento(Medicamento medicamento) {
+		this.medicamento = medicamento;
+	}
+
+	public Estoque getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Estoque estoque) {
+		this.estoque = estoque;
+	}
+
+	public void adicionarQuantidade(BigDecimal quantity) {
+		this.quantidade.add(quantity);
 	}
 
 }
