@@ -62,15 +62,18 @@ public class AbstractCrudController<Entity extends AbstractTenancyEntity, Resour
 			@PathVariable("farmaciaId") long farmaciaId) {
 
 		Farmacia farmacia = farmaciaRepostory.findOne(farmaciaId);
-		
+
 		Entity entity = builder.toEntity(resource, farmacia);
 		repository.save(entity);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
-	public void update(@RequestBody Resource resource) {
-		Entity entity = builder.toEntity(resource);
+	public void update(@RequestBody Resource resource,
+			@PathVariable("farmaciaId") long farmaciaId) {
+		Farmacia farmacia = farmaciaRepostory.findOne(farmaciaId);
+
+		Entity entity = builder.toEntity(resource, farmacia);
 		repository.save(entity);
 	}
 
