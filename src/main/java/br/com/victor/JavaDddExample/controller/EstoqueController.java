@@ -1,5 +1,7 @@
 package br.com.victor.JavaDddExample.controller;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +27,7 @@ public class EstoqueController extends AbstractCrudController<Estoque, Stock> {
 	@Autowired
 	private MedicamentoRepository medicamentoRepository;
 
-	@Autowired
+	@Inject
 	public EstoqueController(EstoqueRepository repository) {
 		super(repository, new StockBuilder());
 		this.repository = repository;

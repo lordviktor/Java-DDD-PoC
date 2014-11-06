@@ -19,7 +19,7 @@
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="DEBUG" />
+		<level value="ERROR" />
 	</logger>
 
 	<logger name="net.jradius">

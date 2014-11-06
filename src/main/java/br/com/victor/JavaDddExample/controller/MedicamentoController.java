@@ -1,5 +1,7 @@
 package br.com.victor.JavaDddExample.controller;
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,11 +13,11 @@ import br.com.victor.JavaDddExample.resources.builder.MedicineBuilder;
 
 @Controller
 @RequestMapping("/farmacia/{farmaciaId}/medicamento")
-public class MedicamentoController extends
-		AbstractCrudController<Medicamento, Medicine> {
+public class MedicamentoController extends AbstractCrudController<Medicamento, Medicine> {
 
-	public MedicamentoController(MedicamentoRepository repository) {
-		super(repository, new MedicineBuilder());
-	}
+    @Inject
+    public MedicamentoController(MedicamentoRepository repository) {
+        super(repository, new MedicineBuilder());
+    }
 
 }

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.victor.JavaDddExample.domain.Cliente;
 import br.com.victor.JavaDddExample.domain.Estoque;
 import br.com.victor.JavaDddExample.domain.Farmacia;
-import br.com.victor.JavaDddExample.domain.Funcionario;
 import br.com.victor.JavaDddExample.domain.Medicamento;
 import br.com.victor.JavaDddExample.domain.Pedido;
 import br.com.victor.JavaDddExample.repository.ClienteRepository;
