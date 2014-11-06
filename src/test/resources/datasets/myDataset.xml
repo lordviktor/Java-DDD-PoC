@@ -1,0 +1,7 @@
+<dataset>
+	<FARMACIA id="1" />
+
+	<MEDICAMENTO id="1" nome="TesteNome" tipoDeQuantidade="comprimido"
+		quantidade="20" principioAtivo="TestePrincipioAtivo" fabricante="testeFabricante"
+		risco="testeRisco" valorVenda="12.00" />
+</dataset>
