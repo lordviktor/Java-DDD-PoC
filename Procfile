@@ -1,0 +1,1 @@
+web: java -javaagent:target/dependency/spring-instrument.jar $JAVA_OPTS -jar target/dependency/webapp-runner.jar --enable-compression --port 8081 target/*.war
