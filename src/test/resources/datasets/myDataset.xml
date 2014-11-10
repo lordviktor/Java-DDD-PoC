@@ -3,5 +3,5 @@
 
 	<MEDICAMENTO id="1" nome="TesteNome" tipoDeQuantidade="comprimido"
 		quantidade="20" principioAtivo="TestePrincipioAtivo" fabricante="testeFabricante"
-		risco="testeRisco" valorVenda="12.00" />
+		risco="testeRisco" valorVenda="12.00" farmacia_id="1" />
 </dataset>
