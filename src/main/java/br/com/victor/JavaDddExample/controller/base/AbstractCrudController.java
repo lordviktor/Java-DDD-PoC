@@ -67,19 +67,22 @@ public class AbstractCrudController<Entity extends AbstractTenancyEntity, Resour
 		repository.save(entity);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
 	public void update(@RequestBody Resource resource,
-			@PathVariable("farmaciaId") long farmaciaId) {
+			@PathVariable("farmaciaId") long farmaciaId,
+			@PathVariable("id") long entityId) {
 		Farmacia farmacia = farmaciaRepostory.findOne(farmaciaId);
 
 		Entity entity = builder.toEntity(resource, farmacia);
+		entity.setId(entityId);
+		
 		repository.save(entity);
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void delete(@RequestBody Resource resource) {
-		repository.delete(resource.getId());
+	public void delete(@PathVariable("id") long id) {
+		repository.delete(id);
 	}
 }

@@ -15,6 +15,8 @@ public class StockBuilder extends AbstractTenancyEntityBuilder<Stock, Estoque> {
 	public Stock toResource(Estoque entity) {
 		Stock stock = super.toResource(entity);
 		stock.setName(entity.getNome());
+		stock.setAddress(entity.getEndereco());
+		stock.setTelephone(entity.getTelefone());
 		return stock;
 	}
 
@@ -22,6 +24,8 @@ public class StockBuilder extends AbstractTenancyEntityBuilder<Stock, Estoque> {
 	public Estoque toEntity(Stock resource, Farmacia farmacia) {
 		Estoque estoque = super.toEntity(resource, farmacia);
 		estoque.setNome(resource.getName());
+		estoque.setTelefone(resource.getTelephone());
+		estoque.setEndereco(resource.getAddress());
 		return estoque;
 	}
 }
