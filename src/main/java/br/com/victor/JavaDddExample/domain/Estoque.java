@@ -68,7 +68,7 @@ public class Estoque extends AbstractTenancyEntity {
 		} else {
 			itemEstoque.removerQuantidade(quantity);
 		}
-
+		
 		itemEstoqueRepository.save(itemEstoque);
 	}
 }

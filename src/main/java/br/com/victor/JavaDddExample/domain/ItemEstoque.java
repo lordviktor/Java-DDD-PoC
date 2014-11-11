@@ -7,15 +7,22 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 
 import br.com.victor.JavaDddExample.domain.base.AbstractEntity;
+import br.com.victor.JavaDddExample.repository.ItemEstoqueRepository;
 
 @Entity
 @Table(name = "ITEM_ESTOQUE")
 @Configurable
 public class ItemEstoque extends AbstractEntity {
+
+	@Autowired
+	@Transient
+	private ItemEstoqueRepository itemEstoqueRepository;
 
 	@Basic
 	private BigDecimal quantidade;
@@ -54,10 +61,16 @@ public class ItemEstoque extends AbstractEntity {
 
 	public void adicionarQuantidade(BigDecimal quantity) {
 		this.quantidade.add(quantity);
+		itemEstoqueRepository.save(this);
 	}
 
 	public void removerQuantidade(BigDecimal quantity) {
 		this.quantidade.subtract(quantity);
+		itemEstoqueRepository.save(this);
 	}
 
+	public boolean temQuantidadeSuficiente(BigDecimal quantidade) {
+		return this.getQuantidade().compareTo(quantidade) > -1;
+	}
+	
 }

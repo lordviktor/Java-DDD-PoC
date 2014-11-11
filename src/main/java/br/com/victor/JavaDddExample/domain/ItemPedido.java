@@ -7,15 +7,23 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 
 import br.com.victor.JavaDddExample.domain.base.AbstractEntity;
+import br.com.victor.JavaDddExample.repository.ItemPedidoRepository;
 
 @Entity
 @Table(name = "ITEM_PEDIDO")
 @Configurable
 public class ItemPedido extends AbstractEntity {
+	
+	@Autowired
+	@Transient
+	private ItemPedidoRepository itemPedidoRepository;
+	
 	@Basic
 	private BigDecimal quantidade;
 
@@ -74,4 +82,8 @@ public class ItemPedido extends AbstractEntity {
 		this.medicamento = medicamento;
 	}
 
+	public void save(){
+		itemPedidoRepository.save(this);	
+	}
+	
 }

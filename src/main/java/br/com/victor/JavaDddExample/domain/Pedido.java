@@ -95,21 +95,19 @@ public class Pedido extends AbstractTenancyEntity {
 				.findByEstoqueIdAndMedicamentoId(estoque.getId(),
 						medicamento.getId());
 
-		if (itemEstoque != null
-				&& itemEstoque.getQuantidade().compareTo(quantidade) == -1) {
+		if (itemEstoque == null
+				|| !itemEstoque.temQuantidadeSuficiente(quantidade)) {
 			throw new NoStockException();
 		}
 
 		itemEstoque.removerQuantidade(quantidade);
-		itemEstoqueRepository.save(itemEstoque);
 
 		itemPedido.setPedido(this);
 		itemPedido.setDesconto(discount);
 		itemPedido.setMedicamento(medicamento);
 		itemPedido.setEstoque(estoque);
 		itemPedido.setQuantidade(quantidade);
-
-		itemPedidoRepository.save(itemPedido);
+		itemPedido.save();
 	}
 
 }
