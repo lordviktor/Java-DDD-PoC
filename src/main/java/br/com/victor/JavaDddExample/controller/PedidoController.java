@@ -64,6 +64,7 @@ public class PedidoController {
 		pedido.setData(new Date());
 		pedido.setFarmacia(farmacia);
 		pedido.seteTelefone(newOrder.isMadeByTelephone());
+		pedido.setDesconto(newOrder.getDiscount());
 
 		if (newOrder.getCustomer() != null) {
 			Cliente cliente = clienteRepository.findOne(newOrder.getCustomer()
