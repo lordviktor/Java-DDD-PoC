@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
 	}
 
 	@ExceptionHandler(NotFoundException.class)
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public void handleNotFoundArgumentException(
 			NotFoundException notFoundException) {
 	}

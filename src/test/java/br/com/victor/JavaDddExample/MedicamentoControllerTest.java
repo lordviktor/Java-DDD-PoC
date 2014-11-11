@@ -2,6 +2,7 @@ package br.com.victor.JavaDddExample;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import br.com.victor.JavaDddExample.domain.Pedido;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/spring/application-context.xml", "classpath:/spring/persistence-context.xml",
@@ -32,6 +35,8 @@ public class MedicamentoControllerTest {
 
     @Test
     public void tryToRetrieveAllMedicaments() throws Exception {
+    	Pedido pedido = new Pedido();
+    	Assert.assertNotNull(pedido.getItemEstoqueRepository());
         mockMvc.perform(MockMvcRequestBuilders.get("/healthCheck")).andExpect(status().isOk());
     }
 }

@@ -7,12 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 
 import br.com.victor.JavaDddExample.domain.base.AbstractEntity;
+import br.com.victor.JavaDddExample.exception.InvalidArgumentException;
 import br.com.victor.JavaDddExample.repository.ItemEstoqueRepository;
 
 @Entity
@@ -20,12 +19,10 @@ import br.com.victor.JavaDddExample.repository.ItemEstoqueRepository;
 @Configurable
 public class ItemEstoque extends AbstractEntity {
 
-	@Autowired
-	@Transient
-	private ItemEstoqueRepository itemEstoqueRepository;
+	private transient ItemEstoqueRepository itemEstoqueRepository;
 
 	@Basic
-	private BigDecimal quantidade;
+	private BigDecimal quantidade = new BigDecimal(0);
 
 	@ManyToOne
 	@JoinColumn
@@ -59,14 +56,26 @@ public class ItemEstoque extends AbstractEntity {
 		this.estoque = estoque;
 	}
 
+	public void setItemEstoqueRepository(ItemEstoqueRepository itemEstoqueRepository) {
+		this.itemEstoqueRepository = itemEstoqueRepository;
+	}
+
 	public void adicionarQuantidade(BigDecimal quantity) {
-		this.quantidade.add(quantity);
+		this.setQuantidade(this.getQuantidade().add(quantity));
 		itemEstoqueRepository.save(this);
 	}
 
 	public void removerQuantidade(BigDecimal quantity) {
-		this.quantidade.subtract(quantity);
-		itemEstoqueRepository.save(this);
+		if(this.getQuantidade().compareTo(quantity) < 0) {
+			throw new InvalidArgumentException();
+		}
+		this.setQuantidade(this.getQuantidade().subtract(quantity));
+		
+		if(this.quantidade.equals(BigDecimal.ZERO)) {
+			itemEstoqueRepository.delete(this);
+		} else {
+			itemEstoqueRepository.save(this);
+		}
 	}
 
 	public boolean temQuantidadeSuficiente(BigDecimal quantidade) {

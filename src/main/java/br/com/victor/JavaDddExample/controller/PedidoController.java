@@ -19,6 +19,8 @@ import br.com.victor.JavaDddExample.domain.Pedido;
 import br.com.victor.JavaDddExample.repository.ClienteRepository;
 import br.com.victor.JavaDddExample.repository.EstoqueRepository;
 import br.com.victor.JavaDddExample.repository.FarmaciaRepository;
+import br.com.victor.JavaDddExample.repository.ItemEstoqueRepository;
+import br.com.victor.JavaDddExample.repository.ItemPedidoRepository;
 import br.com.victor.JavaDddExample.repository.MedicamentoRepository;
 import br.com.victor.JavaDddExample.repository.PedidoRepository;
 import br.com.victor.JavaDddExample.resources.Order;
@@ -42,6 +44,12 @@ public class PedidoController {
 	
 	@Autowired
 	EstoqueRepository estoqueRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
+	
+	@Autowired
+	private ItemEstoqueRepository itemEstoqueRepository;
 
 	@RequestMapping(method = RequestMethod.POST)
 	@Transactional
@@ -59,6 +67,8 @@ public class PedidoController {
 			pedido.setCliente(cliente);
 		}
 
+		pedido.setItemEstoqueRepository(itemEstoqueRepository);
+		pedido.setItemPedidoRepository(itemPedidoRepository);
 		pedidoRepository.save(pedido);
 		
 		for(OrderDetail orderDetail: newOrder.getDetails()){

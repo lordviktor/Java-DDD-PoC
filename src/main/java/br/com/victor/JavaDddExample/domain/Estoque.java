@@ -5,9 +5,7 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 
 import br.com.victor.JavaDddExample.domain.base.AbstractTenancyEntity;
@@ -18,10 +16,8 @@ import br.com.victor.JavaDddExample.repository.ItemEstoqueRepository;
 @Configurable
 public class Estoque extends AbstractTenancyEntity {
 
-	@Transient
-	@Autowired
-	private ItemEstoqueRepository itemEstoqueRepository;
-
+	private transient ItemEstoqueRepository itemEstoqueRepository;
+	
 	@Basic
 	private String nome;
 	@Basic
@@ -29,6 +25,8 @@ public class Estoque extends AbstractTenancyEntity {
 	@Basic
 	private String telefone;
 
+	
+	
 	public String getNome() {
 		return nome;
 	}
@@ -53,6 +51,10 @@ public class Estoque extends AbstractTenancyEntity {
 		this.telefone = telefone;
 	}
 
+	public void setItemEstoqueRepository(ItemEstoqueRepository itemEstoqueRepository) {
+		this.itemEstoqueRepository = itemEstoqueRepository;
+	}
+
 	public void alteraEstoque(Medicamento medicamento, BigDecimal quantity) {
 		ItemEstoque itemEstoque = itemEstoqueRepository
 				.findByEstoqueIdAndMedicamentoId(this.getId(),
@@ -63,12 +65,12 @@ public class Estoque extends AbstractTenancyEntity {
 			itemEstoque.setEstoque(this);
 		}
 
+		itemEstoque.setItemEstoqueRepository(itemEstoqueRepository);
+		
 		if (quantity.signum() == 1) {
 			itemEstoque.adicionarQuantidade(quantity);
 		} else {
-			itemEstoque.removerQuantidade(quantity);
+			itemEstoque.removerQuantidade(quantity.abs());
 		}
-		
-		itemEstoqueRepository.save(itemEstoque);
 	}
 }

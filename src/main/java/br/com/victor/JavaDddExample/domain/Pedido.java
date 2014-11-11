@@ -10,9 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 
 import br.com.victor.JavaDddExample.domain.base.AbstractTenancyEntity;
@@ -25,13 +23,9 @@ import br.com.victor.JavaDddExample.repository.ItemPedidoRepository;
 @Configurable
 public class Pedido extends AbstractTenancyEntity {
 
-	@Autowired
-	@Transient
-	private ItemPedidoRepository itemPedidoRepository;
+	private transient ItemPedidoRepository itemPedidoRepository;
 
-	@Autowired
-	@Transient
-	private ItemEstoqueRepository itemEstoqueRepository;
+	private transient ItemEstoqueRepository itemEstoqueRepository;
 
 	@Basic
 	private Date data;
@@ -86,6 +80,22 @@ public class Pedido extends AbstractTenancyEntity {
 		this.cliente = cliente;
 	}
 
+	public ItemPedidoRepository getItemPedidoRepository() {
+		return itemPedidoRepository;
+	}
+
+	public void setItemPedidoRepository(ItemPedidoRepository itemPedidoRepository) {
+		this.itemPedidoRepository = itemPedidoRepository;
+	}
+
+	public ItemEstoqueRepository getItemEstoqueRepository() {
+		return itemEstoqueRepository;
+	}
+
+	public void setItemEstoqueRepository(ItemEstoqueRepository itemEstoqueRepository) {
+		this.itemEstoqueRepository = itemEstoqueRepository;
+	}
+
 	public void adicionaItem(Medicamento medicamento, BigDecimal quantidade,
 			BigDecimal discount, Estoque estoque) {
 
@@ -100,6 +110,7 @@ public class Pedido extends AbstractTenancyEntity {
 			throw new NoStockException();
 		}
 
+		itemEstoque.setItemEstoqueRepository(itemEstoqueRepository);
 		itemEstoque.removerQuantidade(quantidade);
 
 		itemPedido.setPedido(this);
@@ -107,6 +118,8 @@ public class Pedido extends AbstractTenancyEntity {
 		itemPedido.setMedicamento(medicamento);
 		itemPedido.setEstoque(estoque);
 		itemPedido.setQuantidade(quantidade);
+
+		itemPedido.setItemPedidoRepository(itemPedidoRepository);
 		itemPedido.save();
 	}
 
